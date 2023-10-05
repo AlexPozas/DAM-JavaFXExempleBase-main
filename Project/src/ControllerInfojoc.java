@@ -13,7 +13,9 @@ public class ControllerInfojoc {
 
   @FXML
   private Label text = new Label();
+  @FXML
   private Label text1 = new Label();
+  @FXML
   private Label text11 = new Label();
 
   public void setImage(String resourceName) {

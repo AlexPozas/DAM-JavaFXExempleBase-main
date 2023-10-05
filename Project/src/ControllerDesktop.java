@@ -86,6 +86,7 @@ private AnchorPane info;
         final int index = i;
 
         itemTemplate.setOnMouseClicked(event -> {
+                    
           showInfojocs(type, index);
           
         });
@@ -143,6 +144,7 @@ void showInfo(String type, int index) {
 void showInfojocs(String type, int index) {
   AppData appData = AppData.getInstance();
   JSONObject dades = appData.getItemData(type, index);
+  
 
   URL resource = this.getClass().getResource("assets/layout_info_jocs.fxml");
   info.getChildren().clear();
