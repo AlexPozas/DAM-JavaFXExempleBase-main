@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerDesktop">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerDesktop">
    <children>
       <AnchorPane prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: #95c3ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -19,11 +19,11 @@
          </children>
       </AnchorPane>
       <ChoiceBox fx:id="choiceBox" layoutX="41.0" layoutY="132.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0" />
-      <AnchorPane fx:id="info" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
       <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0">
          <content>
             <VBox fx:id="yPane" />
          </content>
       </ScrollPane>
+      <AnchorPane fx:id="info" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
    </children>
 </AnchorPane>

@@ -16,15 +16,18 @@ public class ControllerDesktop  implements Initializable{
   @FXML
 private ChoiceBox<String> choiceBox;
 
-@FXML
+  @FXML
 private VBox yPane;
 
-@FXML
+  @FXML
 private AnchorPane info;
+
     String opcions[] = { "Personatges", "Jocs", "Consoles" };
 
     @Override
+
     public void initialize(URL url, ResourceBundle rb) {
+
     // Afegeix les opcions al ChoiceBox
     choiceBox.getItems().addAll(opcions);
     // Selecciona la primera opció
@@ -34,6 +37,8 @@ private AnchorPane info;
     // Carregar automàticament les dades de ‘Personatges’
     loadList();
     }
+    
+
     public void loadList() {
     // Obtenir l'opció seleccionada
     String opcio = choiceBox.getValue();
@@ -56,48 +61,55 @@ private AnchorPane info;
       });
 
     }
-public void showList() throws Exception{
-  URL resource = this.getClass().getResource("assets/template_list_item.fxml");
+
+    public void showList() throws Exception{
+      String opcioSeleccionada = choiceBox.getValue();
+      AppData appData = AppData.getInstance();
+      JSONArray dades = appData.getData(opcioSeleccionada);
+      URL resource = this.getClass().getResource("assets/template_list_item.fxml");
+      
+      // Esborrar la llista actual
+      yPane.getChildren().clear();
+
+      for (int i = 0; i < dades.length(); i++) {
+        JSONObject consoleObject = dades.getJSONObject(i);
+        if (consoleObject.has("nom")) {
+          String nom = consoleObject.getString("nom");
+          String imatge = "assets/images/" + consoleObject.getString("imatge");
+          FXMLLoader loader = new FXMLLoader(resource);
+          Parent itemTemplate = loader.load();
+          ControllerListItem itemController = loader.getController();
+          itemController.setText(nom);
+          itemController.setImage(imatge);
+
+        final String type = opcioSeleccionada;
+        final int index = i;
+
+        itemTemplate.setOnMouseClicked(event -> {
+          showInfo(type, index);
+        });
+    
+      yPane.getChildren().add(itemTemplate);
+      }
+      }
+}
+public void showLoading() {
 
 // Esborrar la llista actual
     yPane.getChildren().clear();
-    String opcioSeleccionada = choiceBox.getValue();
-    AppData appData = AppData.getInstance();
-    JSONArray dades = appData.getData(opcioSeleccionada);
-// Carregar la llista amb les dades
-for (int i = 0; i < dades.length(); i++) {
-  JSONObject consoleObject = dades.getJSONObject(i);
 
-  if (consoleObject.has("nom")) {
-    String nom = consoleObject.getString("nom");
-    String imatge = "assets/images/" + consoleObject.getString("imatge");
-    FXMLLoader loader = new FXMLLoader(resource);
-    Parent itemTemplate = loader.load();
-    ControllerListItem itemController = loader.getController();
-    itemController.setText(nom);
-    itemController.setImage(imatge);
-    final String type = opcioSeleccionada;
-    final int index = i;
-    itemTemplate.setOnMouseClicked(event -> {
-      showInfo(type, index);
-    });
-    
-    yPane.getChildren().add(itemTemplate);
-  }
+// Afegeix un indicador de progrés com a primer element de la llista
+ProgressIndicator progressIndicator = new ProgressIndicator();
+yPane.getChildren().add(progressIndicator);
 }
-}
+
+
+
 void showInfo(String type, int index) {
-
-  // Obtenir una referència a l'ojecte AppData que gestiona les dades
   AppData appData = AppData.getInstance();
-
-  // Obtenir les dades de l'opció seleccionada
   JSONObject dades = appData.getItemData(type, index);
 
-  // Carregar la plantilla
   URL resource = this.getClass().getResource("assets/template_info_item.fxml");
-
-  // Esborrar la informació actual
   info.getChildren().clear();
   try {
     FXMLLoader loader = new FXMLLoader(resource);
@@ -113,27 +125,17 @@ void showInfo(String type, int index) {
 
     // Afegeix la informació a la vista
     info.getChildren().add(itemTemplate);
-  // Estableix que la mida de itemTemplaate s'ajusti a la mida de info
-  AnchorPane.setTopAnchor(itemTemplate, 0.0);
-  AnchorPane.setRightAnchor(itemTemplate, 0.0);
-  AnchorPane.setBottomAnchor(itemTemplate, 0.0);
-  AnchorPane.setLeftAnchor(itemTemplate, 0.0);
 
-  } catch (Exception e) {
-    System.out.println("ControllerDesktop: Error showing info.");
-    System.out.println(e);
+
+    AnchorPane.setTopAnchor(itemTemplate, 0.0);
+    AnchorPane.setRightAnchor(itemTemplate, 0.0);
+    AnchorPane.setBottomAnchor(itemTemplate, 0.0);
+    AnchorPane.setLeftAnchor(itemTemplate, 0.0);
+
+    } catch (Exception e) {
+      System.out.println("ControllerDesktop: Error showing info.");
+      System.out.println(e);
+    }
   }
 }
 
-
-  public void showLoading() {
-
-// Esborrar la llista actual
-    yPane.getChildren().clear();
-
-// Afegeix un indicador de progrés com a primer element de la llista
-ProgressIndicator progressIndicator = new ProgressIndicator();
-yPane.getChildren().add(progressIndicator);
-}
-    
-}
