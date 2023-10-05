@@ -86,7 +86,8 @@ private AnchorPane info;
         final int index = i;
 
         itemTemplate.setOnMouseClicked(event -> {
-          showInfo(type, index);
+          showInfojocs(type, index);
+          
         });
     
       yPane.getChildren().add(itemTemplate);
@@ -109,7 +110,7 @@ void showInfo(String type, int index) {
   AppData appData = AppData.getInstance();
   JSONObject dades = appData.getItemData(type, index);
 
-  URL resource = this.getClass().getResource("assets/template_info_item.fxml");
+  URL resource = this.getClass().getResource("assets/layout_info_item.fxml");
   info.getChildren().clear();
   try {
     FXMLLoader loader = new FXMLLoader(resource);
@@ -117,6 +118,7 @@ void showInfo(String type, int index) {
     ControllerInfoItem itemController = loader.getController();
     itemController.setImage("assets/images/" + dades.getString("imatge"));
     itemController.setTitle(dades.getString("nom"));
+    
     switch (type) {
       case "Consoles": itemController.setText(dades.getString("procesador")); break;
       case "Jocs": itemController.setText(dades.getString("descripcio")); break;
@@ -137,5 +139,42 @@ void showInfo(String type, int index) {
       System.out.println(e);
     }
   }
+
+void showInfojocs(String type, int index) {
+  AppData appData = AppData.getInstance();
+  JSONObject dades = appData.getItemData(type, index);
+
+  URL resource = this.getClass().getResource("assets/layout_info_jocs.fxml");
+  info.getChildren().clear();
+  try {
+    FXMLLoader loader = new FXMLLoader(resource);
+    Parent itemTemplate = loader.load();
+    ControllerInfojoc itemController = loader.getController();
+    itemController.setImage("assets/images/" + dades.getString("imatge"));
+    itemController.setTitle(dades.getString("nom"));
+    itemController.setText(String.valueOf(dades.getInt("any")));
+    itemController.setText1(dades.getString("tipus"));
+    itemController.setText11(dades.getString("descripcio")); 
+      
+    
+
+    // Afegeix la informació a la vista
+    info.getChildren().add(itemTemplate);
+
+
+    AnchorPane.setTopAnchor(itemTemplate, 0.0);
+    AnchorPane.setRightAnchor(itemTemplate, 0.0);
+    AnchorPane.setBottomAnchor(itemTemplate, 0.0);
+    AnchorPane.setLeftAnchor(itemTemplate, 0.0);
+
+    } catch (Exception e) {
+      System.out.println("ControllerDesktop: Error showing info.");
+      System.out.println(e);
+    }
+  }
+
+
+
+
 }
 

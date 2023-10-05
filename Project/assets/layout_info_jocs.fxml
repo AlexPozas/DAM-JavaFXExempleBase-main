@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerInfoItem">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerInfojoc">
    <children>
       <VBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -28,13 +28,26 @@
                   <Insets left="25.0" right="25.0" top="25.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="text" alignment="CENTER" text="Label" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="text" alignment="CENTER" text="Label" textAlignment="CENTER" textFill="#00000067" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" top="25.0" />
+                  <Insets left="25.0" right="25.0" top="10.0" />
                </VBox.margin>
+            </Label>
+            <Label fx:id="text1" alignment="CENTER" layoutX="141.0" layoutY="275.0" text="Label" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="text11" alignment="CENTER" layoutX="141.0" layoutY="285.0" text="Label" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
             </Label>
          </children>
       </VBox>
