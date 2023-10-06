@@ -4,9 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
-public class ControllerInfoItem {
+public class ControllerInfocons {
 
-  @FXML
+@FXML
   private ImageView img;
 
   @FXML
@@ -16,6 +16,10 @@ public class ControllerInfoItem {
   private Label text = new Label();
   @FXML
   private Label text1 = new Label();
+  @FXML
+  private Label text11 = new Label();
+  @FXML
+  private Label text111 = new Label();
 
   public void setImage(String resourceName) {
 
@@ -33,16 +37,22 @@ public class ControllerInfoItem {
   }
 
   public void setText(String text) {
-
     // Estableix el contingut del Label
-    this.text.setTextFill(Color.web(text));
     this.text.setText(text);
   }
   public void setText1(String text) {
-
     // Estableix el contingut del Label
+    this.text1.setTextFill(Color.web(text));
     this.text1.setText(text);
+
   }
+  public void setText11(String text) {
+    // Estableix el contingut del Label
+    this.text11.setText(text);
+  }
+public void setText111(String text) {
+    // Estableix el contingut del Label
+    this.text111.setText(text);
+  }
+    
 }
-
-

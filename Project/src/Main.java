@@ -25,6 +25,7 @@ public class Main extends Application {
         UtilsViews.parentContainer.setStyle("-fx-font: 14 arial;");
         UtilsViews.addView(getClass(), "Desktop", "assets/layout_desktop.fxml");
         UtilsViews.addView(getClass(), "Mobile0", "assets/layout_mobile_0.fxml");
+        
 
         Scene scene = new Scene(UtilsViews.parentContainer);
         
