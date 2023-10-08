@@ -86,6 +86,7 @@ private AnchorPane info;
         final int index = i;
         
         itemTemplate.setOnMouseClicked(event -> {
+          
           switch (type) {
             case "Consoles": showInfocons(type, index);break;
             case "Jocs":  showInfojocs(type, index); break;

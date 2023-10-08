@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class ControllerMobile1 {
@@ -23,13 +24,20 @@ public class ControllerMobile1 {
     private Label title;
     @FXML
     private Button button;
+    
+    
 
     String opcions[] = { "Personatges", "Jocs", "Consoles" };
-    public void initialize(String type) {  
+    public void initialize() { 
+      int numero =(int)Math.random()*2+1;
+          
+
         try{
-          System.out.println(type);
-            title.setText(type);
-            loadList(type);
+
+          UtilsViews.setView("Mobile1"); 
+          loadList(opcions[numero-1]);
+          title.setText(opcions[numero-1]);
+
         }catch (Exception e) {
                 
                 e.printStackTrace();
@@ -38,6 +46,8 @@ public class ControllerMobile1 {
         
     }
     public void loadList(String type) {
+      
+      title.setText(type);
         // Obtenir l'opció seleccionada
         String opcio = type;
         // Obtenir una referència a AppData que gestiona les dades
@@ -51,7 +61,8 @@ public class ControllerMobile1 {
             } else {
               // Cal afegir el try/catch a la crida de ‘showList’
               try {
-                showList( type);
+                
+                showList(type);
               } catch (Exception e) {
                 System.out.println("ControllerDesktop: Error showing list.");
               }
@@ -78,15 +89,28 @@ public class ControllerMobile1 {
           ControllerListItem itemController = loader.getController();
           itemController.setText(nom);
           itemController.setImage(imatge);
-
-        final String type2 = opcioSeleccionada;
+          ControllerMobileitem mobittem = new ControllerMobileitem();
+        
         final int index = i;
+        itemTemplate.setOnMouseClicked(event -> {
+          
+          switch (type) {
+            case "Consoles": mobittem.initialize();;break;
+            case "Jocs":  mobittem.initialize(); break;
+            case "Personatges":  mobittem.initialize();break;
+            }
+                      
+        });
+
+
+
         
         
       ypane.getChildren().add(itemTemplate);
       }
       }
 }
+ }
 
     
     
@@ -96,4 +120,4 @@ public class ControllerMobile1 {
     
     
  
-}
+

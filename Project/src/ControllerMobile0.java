@@ -54,33 +54,54 @@ public class ControllerMobile0 implements Initializable{
     
         }
         public void showList() throws Exception{
-      String opcioSeleccionada = opcions[0];
-      AppData appData = AppData.getInstance();
-      JSONArray dades = appData.getData(opcioSeleccionada);
+      
       URL resource = this.getClass().getResource("assets/template_list_item.fxml");
       
       // Esborrar la llista actual
       ypane.getChildren().clear();
-
-      for (int i = 0; i < opcions.length; i++) {
-        
           FXMLLoader loader = new FXMLLoader(resource);
-          Parent itemTemplate = loader.load();
+          Parent itemTemplate1 = loader.load();
           ControllerListItem itemController = loader.getController();
-          itemController.setText(opcions[i]);
-          
-            final String type = opcioSeleccionada;
-            
-            final int index = i;
-            ControllerMobile1 mobil1 = new ControllerMobile1();
-            
-          itemTemplate.setOnMouseClicked(event -> {
-            mobil1.initialize(type);
+          itemController.setText(opcions[0]);
 
+          FXMLLoader loader2 = new FXMLLoader(resource);
+          Parent itemTemplate2 = loader2.load();
+          ControllerListItem itemController2 = loader2.getController();
+          itemController2.setText(opcions[1]);
+
+          FXMLLoader loader3 = new FXMLLoader(resource);
+          Parent itemTemplate3 = loader3.load();
+          ControllerListItem itemController3 = loader3.getController();
+          itemController3.setText(opcions[2]);
+
+
+          ControllerMobile1 mobil1= new ControllerMobile1();
+          itemTemplate1.setOnMouseClicked(event -> {
+                        
+           mobil1.initialize();
+            
+ 
           });
-      ypane.getChildren().add(itemTemplate);
+          
+          itemTemplate2.setOnMouseClicked(event -> {
+            mobil1.initialize();
+ 
+          });
+          
+          itemTemplate3.setOnMouseClicked(event -> {
+           mobil1.initialize();
+            
+ 
+          });
+          
+          
+      ypane.getChildren().add(itemTemplate1);
+      ypane.getChildren().add(itemTemplate2);
+      ypane.getChildren().add(itemTemplate3);
       
-      }
+      
+      
+      
 }
 
     
